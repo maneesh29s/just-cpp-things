@@ -1,0 +1,10 @@
+-x
+c++
+-std=c++17
+-I
+/opt/homebrew/include
+-I
+/Users/maneeshsutar/opt
+-I 
+include
+
