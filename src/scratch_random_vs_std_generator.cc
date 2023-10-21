@@ -8,8 +8,10 @@
 
 #include "helper.hpp"
 
-int main() {
-    const size_t SIZE = std::pow(2, 20);
+int main(int argc, char **argv) {
+    int exponent = std::atoi(argv[1]);
+
+    const size_t SIZE = std::pow(2, exponent);
     std::random_device rd;
     std::mt19937 generator(rd());
     std::uniform_real_distribution<float> distribution(10.f, 5.f);
@@ -26,15 +28,15 @@ int main() {
 
     t.stop_timer();
 
-    std::cout << "Time elapsed for std c++ generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for std c++ generator: " << t.time_elapsed() << " us" << std::endl;
 
     t.start_timer();
 
-    std::vector<float> arr2 = generateRandomData<float>(SIZE, 10.0f, 5.0f);
+    std::vector<float> arr2 = generateRandomData<float>(SIZE, 10.0f, 5.0f, 0);
 
     t.stop_timer();
 
-    std::cout << "Time elapsed for custom random generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for custom random generator: " << t.time_elapsed() << " us" << std::endl;
 
     t.start_timer();
 
@@ -42,5 +44,5 @@ int main() {
 
     t.stop_timer();
 
-    std::cout << "Time elapsed for custom sequential generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for custom sequential generator: " << t.time_elapsed() << " us" << std::endl;
 }

@@ -1,10 +1,10 @@
-CXXFLAGS=-std=c++17 -O3 -Wall -Wextra
+CXXFLAGS=-std=c++17 -O3 -Wall -Wextra -I include
 
-CXXFLAGS+=`pkg-config --cflags --libs ompi` `adios2-config --cxx-flags --cxx-libs` 
+CXXFLAGS+=#pkg-config falgs
 
 # DEBUGOPTIONS=-fsanitize=address -g -fno-omit-frame-pointer
 
-LDFLAGS=
+LDFLAGS=#linker library flags then pkg-config
 
 CXX=g++
 
@@ -15,7 +15,7 @@ src/%: src/%.cc dir
 	$(MPICXX) -o build/$@ $<  $(CXXFLAGS) $(DEBUGOPTIONS) $(LDFLAGS) $(EXTRA)
 
 dir:
-	mkdir -p build/c++
+	mkdir -p build/src
 
 .PHONY: dir
 
