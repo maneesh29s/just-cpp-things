@@ -9,6 +9,12 @@
 #include "helper.hpp"
 
 int main(int argc, char **argv) {
+
+    if(argc < 2){
+        std::cerr << "Usage: " << argv[0] << " size-exponent" << std::endl;
+        return 1;
+    }
+
     int exponent = std::atoi(argv[1]);
 
     const size_t SIZE = std::pow(2, exponent);
@@ -18,7 +24,7 @@ int main(int argc, char **argv) {
 
     std::vector<float> arr(SIZE);
 
-    Timer<std::chrono::microseconds> t;
+    Timer<std::chrono::milliseconds> t;
 
     t.start_timer();
 
@@ -28,7 +34,7 @@ int main(int argc, char **argv) {
 
     t.stop_timer();
 
-    std::cerr << "Time elapsed for std c++ generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for std c++ distributor + generator: " << t.time_elapsed() << std::endl;
 
     t.start_timer();
 
@@ -36,7 +42,7 @@ int main(int argc, char **argv) {
 
     t.stop_timer();
 
-    std::cerr << "Time elapsed for custom random generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for mt19937 random generator: " << t.time_elapsed() << std::endl;
 
     t.start_timer();
 
@@ -44,5 +50,5 @@ int main(int argc, char **argv) {
 
     t.stop_timer();
 
-    std::cerr << "Time elapsed for custom sequential generator: " << t.time_elapsed() << " us" << std::endl;
+    std::cerr << "Time elapsed for custom sequential generator: " << t.time_elapsed() << std::endl;
 }

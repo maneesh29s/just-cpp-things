@@ -12,12 +12,12 @@ MPICXX=mpicxx
 
 # src
 src/%: src/%.cc dir
-	$(MPICXX) -o build/$@ $<  $(CXXFLAGS) $(DEBUGOPTIONS) $(LDFLAGS) $(EXTRA)
+	$(CXX) -o build/$@ $<  $(CXXFLAGS) $(DEBUGOPTIONS) $(LDFLAGS) $(EXTRA)
+
+.PHONY: clean dir
 
 dir:
 	mkdir -p build/src
-
-.PHONY: dir
 
 clean:
 	rm -rf build/*

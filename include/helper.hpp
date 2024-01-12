@@ -6,7 +6,7 @@
 #include <random>
 #include <string>
 
-#define MAXGENRAND 4294967296
+#define MAXGENRAND 0x100000000  // 2^32
 
 template <typename T>
 class Timer {
@@ -64,17 +64,16 @@ std::vector<T> generateSequentialData(const size_t arrSize, T start, T diff) {
 }
 
 template <typename T>
-std::vector<T> generateRandomData(const size_t arrSize, T offset, T range, long seed) {
+std::vector<T> generateRandomData(const size_t arrSize, T minVal, T maxVal, uint32_t seed) {
+    // mersene-twisster generator which generates same random number as in python's random number generator
+    std::mt19937 gen(seed);
+
     std::vector<T> arr(arrSize);
 
-    /* std::mt19937 gen(seed);
-    for (size_t i = 0; i < arr.size(); i++) {
-        arr[i] = offset + range * gen() / MAXGENRAND;
-    } */
+    T range = maxVal - minVal;
 
-    srand(seed);
     for (size_t i = 0; i < arr.size(); i++) {
-        arr[i] = offset + range * (std::rand() / (T)RAND_MAX);
+        arr[i] = minVal + range * gen() / MAXGENRAND;
     }
 
     return arr;
