@@ -73,7 +73,7 @@ std::vector<T> generateRandomData(const size_t arrSize, T minVal, T maxVal, uint
     T range = maxVal - minVal;
 
     for (size_t i = 0; i < arr.size(); i++) {
-        arr[i] = minVal + range * gen() / MAXGENRAND;
+        arr[i] = minVal + static_cast<T>(range * gen() / MAXGENRAND);
     }
 
     return arr;
@@ -81,8 +81,8 @@ std::vector<T> generateRandomData(const size_t arrSize, T minVal, T maxVal, uint
 
 template <typename T>
 void printVector(const std::vector<T>& vec) {
-    for (size_t i = 0; i < vec.size(); i++) {
-        std::cout << vec[i] << " ";
+    for (T value : vec) {
+        std::cout << value << " ";
     }
     std::cout << std::endl;
 }

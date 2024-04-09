@@ -18,37 +18,35 @@ int main(int argc, char **argv) {
     int exponent = std::atoi(argv[1]);
 
     const size_t SIZE = std::pow(2, exponent);
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_real_distribution<float> distribution(10.f, 5.f);
-
-    std::vector<float> arr(SIZE);
-
+    std::vector<double> arr(SIZE);
     Timer<std::chrono::milliseconds> t;
 
+    // C++ generator + distributor
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_real_distribution<double> distribution(10.0, 5.0);
     t.start_timer();
-
     for (std::size_t i = 0; i < arr.size(); ++i) {
         arr[i] = distribution(generator);
     }
-
     t.stop_timer();
 
     std::cerr << "Time elapsed for std c++ distributor + generator: " << t.time_elapsed() << std::endl;
+    arr.clear();
 
+    // C++ mercene twister generator - equivalent to python's random
     t.start_timer();
-
-    std::vector<float> arr2 = generateRandomData<float>(SIZE, 10.0f, 5.0f, 0);
-
+    arr = generateRandomData<double>(SIZE, 10.0f, 5.0f, 0);
     t.stop_timer();
 
-    std::cerr << "Time elapsed for mt19937 random generator: " << t.time_elapsed() << std::endl;
+    std::cerr << "Time elapsed for generateRandomData: " << t.time_elapsed() << std::endl;
+    arr.clear();
 
+    // Sequential generator
     t.start_timer();
-
-    std::vector<float> arr3 = generateSequentialData<float>(SIZE, 10.0f, 1.0f);
-
+    arr = generateSequentialData<double>(SIZE, 10.0f, 1.0f);
     t.stop_timer();
 
     std::cerr << "Time elapsed for custom sequential generator: " << t.time_elapsed() << std::endl;
+    arr.clear();
 }
