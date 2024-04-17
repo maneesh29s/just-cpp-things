@@ -2,7 +2,7 @@ CXXFLAGS=-std=c++17 -O3 -Wall -Wextra -I include
 
 CXXFLAGS+=#pkg-config flags
 
-# DEBUGOPTIONS=-fsanitize=address -g -fno-omit-frame-pointer
+DEBUGOPTIONS=-g -fno-omit-frame-pointer -fsanitize=address
 
 LDFLAGS=#linker library flags then pkg-config
 
