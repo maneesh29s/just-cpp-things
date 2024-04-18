@@ -88,17 +88,22 @@ int main() {
 /* Bonus: semaphores
 
 https://en.cppreference.com/w/cpp/thread/counting_semaphore
-A counting_semaphore contains an internal counter initialized by the constructor. This
-counter is Decremented by calls to acquire() and related methods, and is Incremented by
+A counting_semaphore contains an internal counter initialized by the constructor. 
+
+This counter is Decremented by calls to acquire() and related methods, and is Incremented by
 calls to release(). When the counter is zero, acquire() blocks until the counter is
 incremented.
 
 e.g.
 ```
-std::counting_semaphore smph(1); //at least one process can always access the critical
-section
-main: { smph.acquire() ; // accessing critical section. counter = 0
-    smph.release(2); // allows 2 more threads to access critical section }
+// initiating semaphore
+std::counting_semaphore smph(1); //one process can acquire semaphore
+
+main thread
+{   smph.acquire() ; // acquiring sempahore. counter = 0
+    smph.release(2); // allows 2 more threads to acquire semaphore 
+}
+
 thread1.acquire() // allowed
 thread2.acquire() // allowed
 thread3.acquire() // blocked
