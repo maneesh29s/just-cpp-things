@@ -1,5 +1,4 @@
 #include <array>
-#include <chrono>
 #include <cstdlib>
 #include <experimental/simd>
 #include <iostream>

@@ -6,20 +6,22 @@
 
 #define NL printf("\n")
 
-// Ref: https://www.youtube.com/watch?v=UOB7-B2MfwA
+/* 
+Ref: https://www.youtube.com/watch?v=UOB7-B2MfwA
 
-// Purpose of smart pointer is to
-// 1. create heap allocated objects using `new` keyword
-// 2. Own the object and its lifecycle
-// 3. Make sure the memory is deallocated with `delete` once out-of-scope
+Purpose of smart pointer is to
+1. create heap allocated objects using `new` keyword
+2. Own the object and its lifecycle
+3. Make sure the memory is deallocated with `delete` once out-of-scope
 
-// When to use smart pointers?
-// When you NEED to generate create allocated objects, and don't want to worry about
-// memory leaks
+When to use smart pointers?
+When you NEED to generate create allocated objects, and don't want to worry about
+memory leaks
 
-// What smart pointer is not?
-// Smart pointer is not regular pointer.
-
+What smart pointer is not?
+Smart pointer is not regular pointer.
+ */
+ 
 int main() {
     custom::String fruit("apple");
     std::cout << std::endl << "-------------------------------" << std::endl;
@@ -48,8 +50,8 @@ int main() {
 
     std::cout << std::endl << "-------------------------------" << std::endl;
 
-    {  // Shared pointer
-        // multiple smart pointers can point to same object
+    {  // Shared pointer: multiple smart pointers can point to same object
+    
         // in this case, make_shared will call "copy constructor" of String to create a
         // new object. and it will NOT point to fruit.
         std::shared_ptr<custom::String> ptrFruit = std::make_shared<custom::String>(fruit); NL; NL;

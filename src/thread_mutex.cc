@@ -11,29 +11,35 @@ using namespace std::chrono_literals;
 int counter        = 0;
 int shared_counter = 0;
 
-/* The mutex class is a synchronization primitive that can be used to protect shared data
+/* 
+The mutex class is a synchronization primitive that can be used to protect shared data
 (critical section) from being simultaneously accessed by multiple threads
 
 simple mutex. only one thread can own the mutex at a time
-methods: lock, unlock, try_lock */
+methods: lock, unlock, try_lock 
+*/
 std::mutex mtx;
 
-/* shared mutex. multiple threads can share ownership of the same mutex.
+/* 
+shared mutex. multiple threads can share ownership of the same mutex.
 supports both exclusive and shared access to a resource
 e.g. exclusive for write, but shared for read
-methods: lock, unlock, try_lock; lock_shared, unlock_shared, try_lock_shared */
+methods: lock, unlock, try_lock; lock_shared, unlock_shared, try_lock_shared
+ */
 std::shared_mutex shrd_mtx;
 
 // similar to smart pointers, c++ provides RAII-style mutex locks:
 // lock_guard, unique_lock, shared_lock, scoped_lock
 
 void ex_critical_section() {
-    /* std::lock_guard and std::unique_lock are exclusive locks.
+    /* 
+    std::lock_guard and std::unique_lock are exclusive locks.
     They support any type of mutex which has lock()/unlock() methods (i.e. BasicLockable)
     Both call mtx.lock() during construction, and mtx.unlock() at destruction
 
     NOTE: only one lock can be used inside a scope, as calling lock() on owned mutex will
-    result in resource_deadlock */
+    result in resource_deadlock 
+    */
 
     // basic RAII-style lock. Can not be copied/moved. No methods.
     // std::lock_guard<std::mutex> lock(mtx);
@@ -46,8 +52,10 @@ void ex_critical_section() {
 }
 
 void shared_critical_section() {
-    /* std::shared_lock supports ONLY shared type mutexes
-    Calls mtx.lock_shared() during construction, and mtx.unlock_shared() at destruction */
+    /* 
+    std::shared_lock supports ONLY shared type mutexes
+    Calls mtx.lock_shared() during construction, and mtx.unlock_shared() at destruction 
+    */
 
     // shared_lock is movable; has more methods; supports timed , deferred locks.
     std::shared_lock<std::shared_mutex> sharedlock(shrd_mtx);
@@ -85,9 +93,10 @@ int main() {
     return 0;
 }
 
-/* Bonus: semaphores
-
+/* 
+Bonus: semaphores
 https://en.cppreference.com/w/cpp/thread/counting_semaphore
+
 A counting_semaphore contains an internal counter initialized by the constructor. 
 
 This counter is Decremented by calls to acquire() and related methods, and is Incremented by
@@ -115,7 +124,7 @@ For this, initialise the semaphore with ​0​ which will block the receiver(s)
 try to acquire(), until the notifier "signals" by invoking release(n).
 In this respect semaphores can be considered alternatives to std::condition_variables, often
 with better performance.
- */
+*/
 
 // Recursive mutex: https://en.cppreference.com/w/cpp/thread/recursive_mutex
 
