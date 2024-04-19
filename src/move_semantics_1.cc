@@ -44,10 +44,11 @@ int main() {
 
     // Copy operator
     {
-        custom::String copied("before_copying"); NL;
-        printf("before copy "); copied.prettyPrint(); NL;
+        custom::String copied;
+        printf("before copy: \ndestination: "); copied.prettyPrint(); NL;
         copied = apple; NL;
-        printf("after copy "); copied.prettyPrint(); NL;
+        printf("after copy: \ndestination: "); copied.prettyPrint(); NL;
+        printf("source "); apple.prettyPrint(); NL;
     }
 
     std::cout << std::endl << "--------------------------" << std::endl;
@@ -55,11 +56,10 @@ int main() {
     // Move operator
     {
         custom::String moved;
-        printf("[debug] created empty String\n");
-        printf("before move "); moved.prettyPrint(); NL;
+        printf("before move: \ndestination: "); moved.prettyPrint(); NL;
         moved = std::move(apple); NL;
-        printf("after move "); moved.prettyPrint(); NL;
-        printf("after move "); apple.prettyPrint(); NL;
+        printf("after move: \ndestination: "); moved.prettyPrint(); NL;
+        printf("source "); apple.prettyPrint(); NL;
     }
 
     std::cout << std::endl << "--------------------------" << std::endl;

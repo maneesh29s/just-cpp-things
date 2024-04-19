@@ -1,9 +1,7 @@
 #include <cstdio>
 #include <iostream>
 #include <memory>
-#include <string>
 
-#include "Entity.hpp"
 #include "String.hpp"
 
 #define NL printf("\n")
