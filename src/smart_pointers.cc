@@ -94,7 +94,7 @@ int main() {
         // object. Use weak_ptr.lock() to get shared_ptr instance
         if (!weakFruitPtr.expired())  // just to check if object is not deleted
         {                             // the scope of "tempPtr" shared_ptr is local
-            std::shared_ptr tempPtr = weakFruitPtr.lock();
+            auto tempPtr = weakFruitPtr.lock();
             std::cout << "ptrFruit usecount() inside scope : " << ptrFruit.use_count() << "\n";
         }
 
