@@ -13,7 +13,7 @@
 // https://www.nextptr.com/tutorial/ta1211389378/beware-of-using-stdmove-on-a-const-lvalue
 
 int main() {
-    // char* constructor
+    // const char* constructor
     custom::String apple("apple"); NL;
 
     std::cout << "--------------------------" << std::endl;

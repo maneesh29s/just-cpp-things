@@ -11,13 +11,11 @@ int main() {
         "The sun dipped below the horizon, casting long shadows across the deserted beach. "};
 
     cout << original << endl << endl;
-    // String Replacement: Replace all occurrences of the word "beach" with "coast".
 
+    // String Replacement: Replace all occurrences of the word "beach" with "coast".
     std::regex string_replace_regex("beach");
     std::string replaced = std::regex_replace(original, string_replace_regex, "coast");
-
     cout << "beach to coast: " << replaced << endl;
-
     cout << endl;
 
 
@@ -31,7 +29,6 @@ int main() {
     std::string ad_replaced = std::regex_replace(original, ad_string_replace_regex, "$1$1");
 
     cout << "double words starting with s: " << ad_replaced << endl;
-
     cout << endl;
 
     // String Search: Find all instances of words that start with the letter "s".

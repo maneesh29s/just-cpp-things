@@ -1,4 +1,8 @@
 fileignoreconfig:
 - filename: gists/sse2neon.h
   checksum: 16ebf7feb155f6a76d88ae683e9253b92fc0dfd44afb557c15dc87d50f893b66
+custom_patterns:
+- (?i).*e4r.*
+- (?i).*tw.*
+- (?i).*thoughtworks.*
 version: "1.0"
