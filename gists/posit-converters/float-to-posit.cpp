@@ -15,9 +15,9 @@ std::string convert_bin_to_int(std::string binary_string) {
 }
 
 int main(int argc, char **argv) {
-  // Usage: argv[0] a_side exponent
+  // Usage: argv[0] float_string
   if (argc < 2) {
-    std::cerr << "Usage: " << argv[0] << " float_value";
+    std::cerr << "Usage: " << argv[0] << " float_string";
     return 1;
   }
 
